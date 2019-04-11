@@ -1,0 +1,8 @@
+---	
+- hosts: test
+  gather_facts: False
+  vars_files:
+    - var.yaml
+  tasks:
+    - name: diplay host variable from hostfile
+      debug: msg="the {{ inventory_hostname }} vaule is {{ key }}"

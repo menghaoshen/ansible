@@ -1,0 +1,11 @@
+- hosts: test
+  tasks:
+  - name: install httpd package
+    yum: name=httpd state=present
+  - name: copy httpd.conf
+    template: src=./httpd.conf.j2 dest=/etc/httpd/conf/httpd.conf owner=root group=root mode=0644 
+    notify:
+        - restart httpd service
+  handlers:
+     - name: restart httpd service
+       service: name=httpd state=restarted 
